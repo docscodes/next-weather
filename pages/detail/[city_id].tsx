@@ -4,7 +4,7 @@ import cities from "@/lib/city.list.json"
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head'
 import Link from 'next/link'
-
+import Image from 'next/image';
 
 const Cities = cities as CityData[]
 
@@ -40,6 +40,8 @@ type Props = {
 }
 
 export default function ({ city, weather }: Props) {
+  const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` 
+
   return (
     <>
       <Head>
@@ -56,6 +58,7 @@ export default function ({ city, weather }: Props) {
             {weather.main.temp_min.toFixed(0)}&deg;C
           </h2>
           <div>{weather.weather[0].description}</div>
+          <Image src={iconUrl} width={50} height={50} alt="Weather Icon" />
         </div>
       </main>
     </>
