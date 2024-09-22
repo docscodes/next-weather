@@ -17,7 +17,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     throw new Error("City not found");
   }
 
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${process.env.WEATHER_API_KEY}&exclude=minutely&units=metric`
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${process.env.WEATHER_API_KEY}&exclude=minutely&units=metric`
 
   // Fetch the weather data
   const res = await fetch(url);
@@ -39,7 +39,7 @@ type Props = {
   weather: WeatherData
 }
 
-export default function ({ city, weather }: Props) {
+export default function MyComponent({ city, weather }: Props) {
   const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
 
   return (
